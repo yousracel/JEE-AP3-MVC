@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymleaf/layout"
+      layout:decorate="template1"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>Form Medecins</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/5.1.3/css/bootstrap.min.css">
+</head>
+<body>
+<div layout:fragment="content1">
+    <div class="col-md-6 offset-3 mt-3 card">
+        <div class="card-header"><h2>Ajouter un Medecin</h2></div>
+        <div class="card-body">
+            <form method="post" th:action="@{/admin/saveMedecin}">
+                <div>
+                    <label for="nom">
+                        <strong>Nom</strong>
+                    </label>
+                    <input id="nom" type="text" name="nom" class="form-control" th:value="${medecin.nom}">
+                    <span class="text-danger" th:errors="${medecin.nom}"></span>
+                </div>
+                <div>
+                    <label>
+                        <strong>Date de naissance</strong>
+                    </label>
+                    <input type="date" name="dateNaissance" class="form-control" th:value="${medecin.dateNaissance}">
+                    <span th:errors="${medecin.dateNaissance}"></span>
+                </div>
+
+                <div>
+                    <label>
+                        <strong>specialité</strong>
+                    </label>
+                    <input type="text" name="specialite" class="form-control" th:value="${medecin.specialite}">
+                    <span th:errors="${medecin.specialite}"></span>
+                </div>
+                <button type="submit" class="btn btn-primary mt-3">Save</button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
