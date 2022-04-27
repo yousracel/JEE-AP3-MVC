@@ -16,25 +16,25 @@
         <div class="card-body">
             <form method="post" th:action="@{/admin/saveMedecin}">
                 <div>
-                    <label for="nom">
+                    <label for="nom" class="mb-2 mt-2 ">
                         <strong>Nom</strong>
                     </label>
                     <input id="nom" type="text" name="nom" class="form-control" th:value="${medecin.nom}">
                     <span class="text-danger" th:errors="${medecin.nom}"></span>
                 </div>
                 <div>
-                    <label>
+                    <label class="mb-2 mt-2 " >
                         <strong>Date de naissance</strong>
                     </label>
-                    <input type="date" name="dateNaissance" class="form-control" th:value="${medecin.dateNaissance}">
+                    <input type="date" name="dateNaissance" class="form-control mb-2 mt-2 " th:value="${medecin.dateNaissance}">
                     <span th:errors="${medecin.dateNaissance}"></span>
                 </div>
 
                 <div>
-                    <label>
+                    <label class="mb-2 mt-2 " >
                         <strong>specialité</strong>
                     </label>
-                    <input type="text" name="specialite" class="form-control" th:value="${medecin.specialite}">
+                    <input type="text" name="specialite" class="form-control mb-2 mt-2" th:value="${medecin.specialite}">
                     <span th:errors="${medecin.specialite}"></span>
                 </div>
                 <button type="submit" class="btn btn-primary mt-3">Save</button>
