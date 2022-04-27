@@ -27,13 +27,20 @@ public class PatientController {
     public String patients(Model model,
                            @RequestParam(name="page",defaultValue = "0") int page,
                            @RequestParam(name="size",defaultValue = "5")int size,
-                           @RequestParam(name="keyword",defaultValue = "")String keyword){
-        Page<Patient> pagePatients=patientRepository.findByNomContains(keyword,PageRequest.of(page,size));
+                           @RequestParam(name="keyword",defaultValue = "")String keyword,
+                           @RequestParam(name="keyword2",defaultValue = "0") int keyword2,
+                           @RequestParam(name="cin",defaultValue = "") String cin){
+        Page<Patient> pagePatients=patientRepository.findByNomContainsAndScoreGreaterThanEqual(keyword,keyword2,PageRequest.of(page,size));
+        if(!cin.equals(""))
+            pagePatients=patientRepository.findByNomContainsAndScoreGreaterThanEqualAndCINContains(keyword,keyword2,cin,PageRequest.of(page,size));
         model.addAttribute("listPatients", pagePatients.getContent());
 
         model.addAttribute("pages",new int[pagePatients.getTotalPages()]);
         model.addAttribute("currentPage",page);
         model.addAttribute("keyword",keyword);
+        model.addAttribute("keyword2",keyword2);
+        model.addAttribute("cin",cin);
+        model.addAttribute("totalPages",pagePatients.getTotalPages());
         return "patients";
     }
     @GetMapping("/admin/delete")
