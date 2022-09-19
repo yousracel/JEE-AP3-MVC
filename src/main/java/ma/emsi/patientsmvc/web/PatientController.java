@@ -23,7 +23,7 @@ public class PatientController {
 
     private PatientRepository patientRepository;
 
-    @GetMapping(path = "/user/index")
+    @GetMapping(path = "/user/indexPatient")
     public String patients(Model model,
                            @RequestParam(name="page",defaultValue = "0") int page,
                            @RequestParam(name="size",defaultValue = "5")int size,
@@ -54,19 +54,19 @@ public class PatientController {
 
         return "home";
     }
-    @GetMapping("/user/patients")
+    @GetMapping("/user/patientsP")
     @ResponseBody
     public List<Patient> listPatients(){
         return patientRepository.findAll();
     }
 
-    @GetMapping("/admin/formPatients")
+    @GetMapping("/admin/formPatientsP")
     public String formPatient(Model model  ){
         model.addAttribute("patient",new Patient());
         return "formPatients";
     }
 
-    @PostMapping(path = "/admin/save")
+    @PostMapping(path = "/admin/saveP")
     public String save(Model model, @Valid Patient patient, BindingResult bindingResult,@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "") String keyword){
         if(bindingResult.hasErrors()) return "formPatients";
         patientRepository.save(patient);

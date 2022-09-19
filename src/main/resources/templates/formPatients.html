@@ -11,18 +11,586 @@
     <div layout:fragment="content1">
         <div class="col-md-6 offset-3 card">
             <div class="card-header">
-                <h2>Ajouter un Patient</h2>
+                <h2>Ajouter un Contact</h2>
             </div>
 
             <div class="card-body">
                 <form method="post" th:action="@{/admin/save}" >
+                    <div >
+                        <label class="mb-2 mt-2 " ><strong>Date</strong></label>
+                        <input class="form-control" type="date" name="date" th:value="${contact.date}">
+                        <span class="text-danger" th:errors="${contact.date}"/>
+                    </div>
                     <div>
-                        <label class="mb-2 mt-2">Nom</label>
-                        <input class="form-control" type="text" name="nom" th:value="${patient.nom}">
-                        <span class="text-danger" th:errors="${patient.nom}"></span>
+                        <label class="mb-2 mt-2">Source :</label>
+                        <select class="form-control mb-2" name="type" id="type">
+                            <option value=""></option>
+                            <option value="appel" th:selected="${contact.type eq 'appel'}">appel</option>
+                            <option value="mail" th:selected="${contact.type eq 'mail'}">mail</option>
+<!--                            <option th:text="mail" th:value="${contact.type}"></option>-->
+                        </select>
+
+                        <span class="text-danger" th:errors="${contact.type}"></span>
                     </div>
 
                     <div>
+                        <label class="mb-2 mt-2">Intermediaire :</label>
+                        <select class="form-control mb-2" name="intermediaire" id="intermediaire">
+                            <option value=""></option>
+                            <option value="agent" th:selected="${contact.intermediaire eq 'agent'}">Agent</option>
+                            <option value="courtier" th:selected="${contact.intermediaire eq 'courtier'}">Courtier</option>
+                            <option value="BDG" th:selected="${contact.intermediaire eq 'BDG'}">BDG</option>
+                        </select>
+                        <span class="text-danger" th:errors="${contact.intermediaire}"></span>
+                    </div>
+
+                    <div>
+                        <label class="mb-2 mt-2">Nom de l'Intermediaire :</label>
+                        <select class="form-control mb-2" name="nomInterm" id="nomInterm">
+<!--                           <input class="form-control" type="text" name="nomInterm" th:value="${contact.nomInterm}">-->
+                            <option value=""></option>
+                            <option value="ASSURANCES SAADANE" th:selected="${contact.nomInterm eq 'ASSURANCES SAADANE'}">ASSURANCES SAADANE</option>
+                            <option value="FINASSUR SARL" th:selected="${contact.nomInterm eq 'FINASSUR SARL'}">FINASSUR SARL</option>
+                            <option value="COURTASSUR" th:selected="${contact.nomInterm eq 'COURTASSUR'}">COURTASSUR</option>
+                            <option value="CENTRASSUR" th:selected="${contact.nomInterm eq 'CENTRASSUR'}">CENTRASSUR</option>
+                            <option value="ASSURANCES MOHAMED V" th:selected="${contact.nomInterm eq 'ASSURANCES MOHAMED V'}">ASSURANCES MOHAMED V</option>
+                            <option value="MARFOUK ASSURANCES SARL" th:selected="${contact.nomInterm eq 'MARFOUK ASSURANCES SARL'}">MARFOUK ASSURANCES SARL</option>
+                            <option value="ASSURLAND SARL" th:selected="${contact.nomInterm eq 'ASSURLAND SARL'}">ASSURLAND SARL</option>
+                            <option value="ACECA TANGER" th:selected="${contact.nomInterm eq 'ACECA TANGER'}">ACECA TANGER</option>
+                            <option value="AL KHIBRA ASSURANCES SARL" th:selected="${contact.nomInterm eq 'AL KHIBRA ASSURANCES SARL'}">AL KHIBRA ASSURANCES SARL</option>
+                            <option value="PEAK CONSEIL" th:selected="${contact.nomInterm eq 'PEAK CONSEIL'}">PEAK CONSEIL</option>
+                            <option value="AXIOME ASSURANCE MAROC" th:selected="${contact.nomInterm eq 'AXIOME ASSURANCE MAROC'}">AXIOME ASSURANCE MAROC</option>
+                            <option value="EPEGA TANGER" th:selected="${contact.nomInterm eq 'EPEGA TANGER'}">EPEGA TANGER</option>
+                            <option value="EPEGA RABAT" th:selected="${contact.nomInterm eq 'EPEGA RABAT'}">EPEGA RABAT</option>
+                            <option value="PERFORMANCE ASSURANCES SARL" th:selected="${contact.nomInterm eq 'PERFORMANCE ASSURANCES SARL'}">PERFORMANCE ASSURANCES SARL</option>
+                            <option value="ASWAR ASSURANCES SARL" th:selected="${contact.nomInterm eq 'ASWAR ASSURANCES SARL'}">ASWAR ASSURANCES SARL</option>
+                            <option value="GRAS SAVOYE TANGER" th:selected="${contact.nomInterm eq 'GRAS SAVOYE TANGER'}">GRAS SAVOYE TANGER</option>
+                            <option value="ASSURANCES AL HIMMA" th:selected="${contact.nomInterm eq 'ASSURANCES AL HIMMA'}">ASSURANCES AL HIMMA</option>
+                            <option value="SOCIETE DE COURTAGE ASSURANCES 2Z" th:selected="${contact.nomInterm eq 'SOCIETE DE COURTAGE ASSURANCES 2Z'}">SOCIETE DE COURTAGE ASSURANCES 2Z</option>
+                            <option value="LA CONTINENTALE ASSURANCES ET DE COURTAGE" th:selected="${contact.nomInterm eq 'LA CONTINENTALE ASSURANCES ET DE COURTAGE'}">LA CONTINENTALE ASSURANCES ET DE COURTAGE</option>
+                            <option value="SOCIETE DAR TAWFIR ASSURANCES SARL" th:selected="${contact.nomInterm eq 'SOCIETE DAR TAWFIR ASSURANCES SARL'}">SOCIETE DAR TAWFIR ASSURANCES SARL</option>
+                            <option value="CABINET COGERASSUR" th:selected="${contact.nomInterm eq 'CABINET COGERASSUR'}">CABINET COGERASSUR</option>
+                            <option value="AGECAP SARL" th:selected="${contact.nomInterm eq 'AGECAP SARL'}">AGECAP SARL</option>
+                            <option value="ASSURANCES NAZIH" th:selected="${contact.nomInterm eq 'ASSURANCES NAZIH'}">ASSURANCES NAZIH</option>
+                            <option value="EPEGA AGADIR SARL" th:selected="${contact.nomInterm eq 'EPEGA AGADIR SARL'}">EPEGA AGADIR SARL</option>
+                            <option value="ASSURANCES ARBEA RE" th:selected="${contact.nomInterm eq 'ASSURANCES ARBEA RE'}">ASSURANCES ARBEA RE</option>
+                            <option value="SOGEASSUR" th:selected="${contact.nomInterm eq 'SOGEASSUR'}">SOGEASSUR</option>
+                            <option value="ASSURANCES ARRIDA" th:selected="${contact.nomInterm eq 'ASSURANCES ARRIDA'}">ASSURANCES ARRIDA</option>
+                            <option value="JASSUR" th:selected="${contact.nomInterm eq 'JASSUR'}">JASSUR</option>
+                            <option value="POLASSUR" th:selected="${contact.nomInterm eq 'POLASSUR'}">POLASSUR</option>
+                            <option value="AFRICAN REINSURANCE BROKERS" th:selected="${contact.nomInterm eq 'AFRICAN REINSURANCE BROKERS'}">AFRICAN REINSURANCE BROKERS</option>
+                            <option value="CABINET ASSURANCIA" th:selected="${contact.nomInterm eq 'CABINET ASSURANCIA'}">CABINET ASSURANCIA</option>
+                            <option value="BRIDGE ASSURANCES" th:selected="${contact.nomInterm eq 'BRIDGE ASSURANCES'}">BRIDGE ASSURANCES</option>
+                            <option value="ASSURANCES DEFASSUR" th:selected="${contact.nomInterm eq 'ASSURANCES DEFASSUR'}">ASSURANCES DEFASSUR</option>
+                            <option value="ASSURANTIS" th:selected="${contact.nomInterm eq 'ASSURANTIS'}">ASSURANTIS</option>
+                            <option value="PRINTASSUR" th:selected="${contact.nomInterm eq 'PRINTASSUR'}">PRINTASSUR</option>
+                            <option value="ZAKASSUR" th:selected="${contact.nomInterm eq 'ZAKASSUR'}">ZAKASSUR</option>
+                            <option value="CABINET DIVASSUR" th:selected="${contact.nomInterm eq 'CABINET DIVASSUR'}">CABINET DIVASSUR</option>
+                            <option value="C4 ASSUREUR CONSEIL" th:selected="${contact.nomInterm eq 'C4 ASSUREUR CONSEIL'}">C4 ASSUREUR CONSEIL</option>
+                            <option value="ASSURANCES MCCA" th:selected="${contact.nomInterm eq 'ASSURANCES MCCA'}">ASSURANCES MCCA</option>
+                            <option value="AFMA FES" th:selected="${contact.nomInterm eq 'AFMA FES'}">AFMA FES</option>
+                            <option value="SIGMA ASSURANCE" th:selected="${contact.nomInterm eq 'SIGMA ASSURANCE'}">SIGMA ASSURANCE</option>
+                            <option value="VIVASSUR" th:selected="${contact.nomInterm eq 'VIVASSUR'}">VIVASSUR</option>
+                            <option value="ASSURANCE ELINQAD" th:selected="${contact.nomInterm eq 'ASSURANCE ELINQAD'}">ASSURANCE ELINQAD</option>
+                            <option value="LOFT ASSURANCE" th:selected="${contact.nomInterm eq 'LOFT ASSURANCE'}">LOFT ASSURANCE</option>
+                            <option value="ASSURANCES BETASSUR" th:selected="${contact.nomInterm eq 'ASSURANCES BETASSUR'}">ASSURANCES BETASSUR</option>
+                            <option value="SDN ARTAI" th:selected="${contact.nomInterm eq 'SDN ARTAI'}">SDN ARTAI</option>
+                            <option value="MEHDI ASSURANCES" th:selected="${contact.nomInterm eq 'MEHDI ASSURANCES'}">MEHDI ASSURANCES</option>
+                            <option value="AL ITKANE" th:selected="${contact.nomInterm eq 'AL ITKANE'}">AL ITKANE</option>
+                            <option value="MILLENIUM ASSURANCES" th:selected="${contact.nomInterm eq 'MILLENIUM ASSURANCES'}">MILLENIUM ASSURANCES</option>
+                            <option value="LA MAROCAINE INTERMEDIATION EN ASSURANCE" th:selected="${contact.nomInterm eq 'LA MAROCAINE INTERMEDIATION EN ASSURANCE'}">LA MAROCAINE INTERMEDIATION EN ASSURANCE</option>
+                            <option value="HELVETICA ASSURANCES" th:selected="${contact.nomInterm eq 'HELVETICA ASSURANCES'}">HELVETICA ASSURANCES</option>
+                            <option value="ACECA BERNOUSSI" th:selected="${contact.nomInterm eq 'ACECA BERNOUSSI'}">ACECA BERNOUSSI</option>
+                            <option value="SAMSARA ASSURANCES" th:selected="${contact.nomInterm eq 'SAMSARA ASSURANCES'}">SAMSARA ASSURANCES</option>
+                            <option value="ICORAL ASSURANCES" th:selected="${contact.nomInterm eq 'ICORAL ASSURANCES'}">ICORAL ASSURANCES</option>
+                            <option value="DEAL ASSURANCES SARL" th:selected="${contact.nomInterm eq 'DEAL ASSURANCES SARL'}">DEAL ASSURANCES SARL</option>
+                            <option value="ASSURANCES ALMOULKOU LILLAH" th:selected="${contact.nomInterm eq 'ASSURANCES ALMOULKOU LILLAH'}">ASSURANCES ALMOULKOU LILLAH</option>
+                            <option value="ABWAB ASSURANCE" th:selected="${contact.nomInterm eq 'ABWAB ASSURANCE'}">ABWAB ASSURANCE</option>
+                            <option value="PREVAS" th:selected="${contact.nomInterm eq 'PREVAS'}">PREVAS</option>
+                            <option value="ORASSUR" th:selected="${contact.nomInterm eq 'ORASSUR'}">ORASSUR</option>
+                            <option value="AGL ASSUREUR" th:selected="${contact.nomInterm eq 'AGL ASSUREUR'}">AGL ASSUREUR</option>
+                            <option value="FILASSURE SARL" th:selected="${contact.nomInterm eq 'FILASSURE SARL'}">FILASSURE SARL</option>
+                            <option value="SNTL ASSURANCES" th:selected="${contact.nomInterm eq 'SNTL ASSURANCES'}">SNTL ASSURANCES</option>
+                            <option value="AYLIS INSURANCE GROUP" th:selected="${contact.nomInterm eq 'AYLIS INSURANCE GROUP'}">AYLIS INSURANCE GROUP</option>
+                            <option value="PROGRESSIVE ASSURANCE GENERAL" th:selected="${contact.nomInterm eq 'PROGRESSIVE ASSURANCE GENERAL'}">PROGRESSIVE ASSURANCE GENERAL</option>
+                            <option value="SOLUTION ASSURANCE" th:selected="${contact.nomInterm eq 'SOLUTION ASSURANCE'}">SOLUTION ASSURANCE</option>
+                            <option value="OBJECTIF ASSURANCES SARL" th:selected="${contact.nomInterm eq 'OBJECTIF ASSURANCES SARL'}">OBJECTIF ASSURANCES SARL</option>
+                            <option value="FOCUS ASSURANCE" th:selected="${contact.nomInterm eq 'FOCUS ASSURANCE'}">FOCUS ASSURANCE</option>
+                            <option value="PREMIUM COURTAGE" th:selected="${contact.nomInterm eq 'PREMIUM COURTAGE'}">PREMIUM COURTAGE</option>
+                            <option value="OPTIMUM ASSURANCE" th:selected="${contact.nomInterm eq 'OPTIMUM ASSURANCE'}">OPTIMUM ASSURANCE</option>
+                            <option value="FEMAS ASSURANCE" th:selected="${contact.nomInterm eq 'FEMAS ASSURANCE'}">FEMAS ASSURANCE</option>
+                            <option value="ZALASSUR" th:selected="${contact.nomInterm eq 'ZALASSUR'}">ZALASSUR</option>
+                            <option value="AFMA RABAT" th:selected="${contact.nomInterm eq 'AFMA RABAT'}">AFMA RABAT</option>
+                            <option value="G-PROGRESS" th:selected="${contact.nomInterm eq 'G-PROGRESS'}">G-PROGRESS</option>
+                            <option value="GLOBASSUR" th:selected="${contact.nomInterm eq 'GLOBASSUR'}">GLOBASSUR</option>
+                            <option value="GRAS SAVOYE RABAT" th:selected="${contact.nomInterm eq 'GRAS SAVOYE RABAT'}">GRAS SAVOYE RABAT</option>
+                            <option value="ELLE ASSURANCE" th:selected="${contact.nomInterm eq 'ELLE ASSURANCE'}">ELLE ASSURANCE</option>
+                            <option value="ACECA RABAT" th:selected="${contact.nomInterm eq 'ACECA RABAT'}">ACECA RABAT</option>
+                            <option value="EPEGA MARRAKECH" th:selected="${contact.nomInterm eq 'EPEGA MARRAKECH'}">EPEGA MARRAKECH</option>
+                            <option value="JMF COURTAGE ASSURANCES" th:selected="${contact.nomInterm eq 'JMF COURTAGE ASSURANCES'}">JMF COURTAGE ASSURANCES</option>
+                            <option value="RAZANE ASSURANCE" th:selected="${contact.nomInterm eq 'RAZANE ASSURANCE'}">RAZANE ASSURANCE</option>
+                            <option value="MAC ASSURANCE" th:selected="${contact.nomInterm eq 'MAC ASSURANCE'}">MAC ASSURANCE</option>
+                            <option value="MUSTAPHA ATTMINAT" th:selected="${contact.nomInterm eq 'MUSTAPHA ATTMINAT'}">MUSTAPHA ATTMINAT</option>
+                            <option value="TRIVASSUR" th:selected="${contact.nomInterm eq 'TRIVASSUR'}">TRIVASSUR</option>
+                            <option value="ASSURANCE REDOUANE JBILOU" th:selected="${contact.nomInterm eq 'ASSURANCE REDOUANE JBILOU'}">ASSURANCE REDOUANE JBILOU</option>
+                            <option value="ISSARASSUR" th:selected="${contact.nomInterm eq 'ISSARASSUR'}">ISSARASSUR</option>
+                            <option value="ASSURANCES LHORIZON" th:selected="${contact.nomInterm eq 'ASSURANCES LHORIZON'}">ASSURANCES LHORIZON</option>
+                            <option value="ASSURANCES BEKKAOUI" th:selected="${contact.nomInterm eq 'ASSURANCES BEKKAOUI'}">ASSURANCES BEKKAOUI</option>
+                            <option value="OZONE ASSURANCES" th:selected="${contact.nomInterm eq 'OZONE ASSURANCES'}">OZONE ASSURANCES</option>
+                            <option value="BACHASSUR" th:selected="${contact.nomInterm eq 'BACHASSUR'}">BACHASSUR</option>
+                            <option value="BENDOURO" th:selected="${contact.nomInterm eq 'BENDOURO'}">BENDOURO</option>
+                            <option value="CPC ASSURANCE" th:selected="${contact.nomInterm eq 'CPC ASSURANCE'}">CPC ASSURANCE</option>
+                            <option value="DAFALI" th:selected="${contact.nomInterm eq 'DAFALI'}">DAFALI</option>
+                            <option value="INARA ASSURANCE" th:selected="${contact.nomInterm eq 'INARA ASSURANCE'}">INARA ASSURANCE</option>
+                            <option value="AL MAGHRIBIA LI TAAMINE" th:selected="${contact.nomInterm eq 'AL MAGHRIBIA LI TAAMINE'}">AL MAGHRIBIA LI TAAMINE</option>
+                            <option value="FILAMANE" th:selected="${contact.nomInterm eq 'FILAMANE'}">FILAMANE</option>
+                            <option value="GRAS SAVOYE AGADIR" th:selected="${contact.nomInterm eq 'GRAS SAVOYE AGADIR'}">GRAS SAVOYE AGADIR</option>
+                            <option value="SGDA LA CORNICHE" th:selected="${contact.nomInterm eq 'SGDA LA CORNICHE'}">SGDA LA CORNICHE</option>
+                            <option value="CABINET ASSURIA SARL" th:selected="${contact.nomInterm eq 'CABINET ASSURIA SARL'}">CABINET ASSURIA SARL</option>
+                            <option value="2B ASSUR" th:selected="${contact.nomInterm eq '2B ASSUR'}">2B ASSUR</option>
+                            <option value="ASSURANCES MOSTAINE" th:selected="${contact.nomInterm eq 'ASSURANCES MOSTAINE'}">ASSURANCES MOSTAINE</option>
+                            <option value="RISKMAN ASSUR" th:selected="${contact.nomInterm eq 'RISKMAN ASSUR'}">RISKMAN ASSUR</option>
+                            <option value="ASSURANCE ABDESSAMAD SABAH SARL" th:selected="${contact.nomInterm eq 'ASSURANCE ABDESSAMAD SABAH SARL'}">ASSURANCE ABDESSAMAD SABAH SARL</option>
+                            <option value="SOCAF" th:selected="${contact.nomInterm eq 'SOCAF'}">SOCAF</option>
+                            <option value="ODDO ASSURANCE" th:selected="${contact.nomInterm eq 'ODDO ASSURANCE'}">ODDO ASSURANCE</option>
+                            <option value="ASSURANCES ZIRAOUI S.A.R.L" th:selected="${contact.nomInterm eq 'ASSURANCES ZIRAOUI S.A.R.L'}">ASSURANCES ZIRAOUI S.A.R.L</option>
+                            <option value="AFMA OUJDA" th:selected="${contact.nomInterm eq 'AFMA OUJDA'}">AFMA OUJDA</option>
+                            <option value="Assurance la colline" th:selected="${contact.nomInterm eq 'Assurance la colline'}">Assurance la colline</option>
+                            <option value="ASSURANCES LYAZIDI CASABLANCA" th:selected="${contact.nomInterm eq 'ASSURANCES LYAZIDI CASABLANCA'}">ASSURANCES LYAZIDI CASABLANCA</option>
+                            <option value="MED ASSURANCE SARL" th:selected="${contact.nomInterm eq 'MED ASSURANCE SARL'}">MED ASSURANCE SARL</option>
+                            <option value="ABEMA ASSURANCES" th:selected="${contact.nomInterm eq 'ABEMA ASSURANCES'}">ABEMA ASSURANCES</option>
+                            <option value="OVERALL ASSURANCE" th:selected="${contact.nomInterm eq 'OVERALL ASSURANCE'}">OVERALL ASSURANCE</option>
+                            <option value="ASSURANCE AL JIHA" th:selected="${contact.nomInterm eq 'ASSURANCE AL JIHA'}">ASSURANCE AL JIHA</option>
+                            <option value="ASSURANCES NOURI" th:selected="${contact.nomInterm eq 'ASSURANCES NOURI'}">ASSURANCES NOURI</option>
+                            <option value="LOYAL ASSURANCE" th:selected="${contact.nomInterm eq 'LOYAL ASSURANCE'}">LOYAL ASSURANCE</option>
+                            <option value="IHSSANE ASSURANCES" th:selected="${contact.nomInterm eq 'IHSSANE ASSURANCES'}">IHSSANE ASSURANCES</option>
+                            <option value="STE ADVISORS GROUP ASSURANCE SARL" th:selected="${contact.nomInterm eq 'STE ADVISORS GROUP ASSURANCE SARL'}">STE ADVISORS GROUP ASSURANCE SARL</option>
+                            <option value="BENBRAHIM ASSURANCES DU SUD SARL" th:selected="${contact.nomInterm eq 'BENBRAHIM ASSURANCES DU SUD SARL'}">BENBRAHIM ASSURANCES DU SUD SARL</option>
+                            <option value="KRIMASSUR" th:selected="${contact.nomInterm eq 'KRIMASSUR'}">KRIMASSUR</option>
+                            <option value="ASSURANCES TADLA AZILAL S.A.R.L" th:selected="${contact.nomInterm eq 'ASSURANCES TADLA AZILAL S.A.R.L'}">ASSURANCES TADLA AZILAL S.A.R.L</option>
+                            <option value="POLYASSURANCES" th:selected="${contact.nomInterm eq 'POLYASSURANCES'}">POLYASSURANCES</option>
+                            <option value="GRAS SAVOYE FES SARL" th:selected="${contact.nomInterm eq 'GRAS SAVOYE FES SARL'}">GRAS SAVOYE FES SARL</option>
+                            <option value="GRAS SAVOYE MARRAKECH SARL" th:selected="${contact.nomInterm eq 'GRAS SAVOYE MARRAKECH SARL'}">GRAS SAVOYE MARRAKECH SARL</option>
+                            <option value="GLOBAL DE COURTAGE SARL" th:selected="${contact.nomInterm eq 'GLOBAL DE COURTAGE SARL'}">GLOBAL DE COURTAGE SARL</option>
+                            <option value="LES ASSURANCES ALTERNATIVES" th:selected="${contact.nomInterm eq 'LES ASSURANCES ALTERNATIVES'}">LES ASSURANCES ALTERNATIVES</option>
+                            <option value="ASSURANCES MALLAHI" th:selected="${contact.nomInterm eq 'ASSURANCES MALLAHI'}">ASSURANCES MALLAHI</option>
+                            <option value="ASSURANCE BADDOUCH SARL" th:selected="${contact.nomInterm eq 'ASSURANCE BADDOUCH SARL'}">ASSURANCE BADDOUCH SARL</option>
+                            <option value="FIDELIA ASSURANCE" th:selected="${contact.nomInterm eq 'FIDELIA ASSURANCE'}">FIDELIA ASSURANCE</option>
+                            <option value="ASSURANCES TRANSASSUR" th:selected="${contact.nomInterm eq 'ASSURANCES TRANSASSUR'}">ASSURANCES TRANSASSUR</option>
+                            <option value="EPEGA CENTRE" th:selected="${contact.nomInterm eq 'EPEGA CENTRE'}">EPEGA CENTRE</option>
+                            <option value="GLOBAL SERVICES" th:selected="${contact.nomInterm eq 'GLOBAL SERVICES'}">GLOBAL SERVICES</option>
+                            <option value="BBF ASSURANCES" th:selected="${contact.nomInterm eq 'BBF ASSURANCES'}">BBF ASSURANCES</option>
+                            <option value="BAYASSUR SARL" th:selected="${contact.nomInterm eq 'BAYASSUR SARL'}">BAYASSUR SARL</option>
+                            <option value="OPTIMARISK ASSURANCES" th:selected="${contact.nomInterm eq 'OPTIMARISK ASSURANCES'}">OPTIMARISK ASSURANCES</option>
+                            <option value="AINANE ADAM ASSURANCES" th:selected="${contact.nomInterm eq 'AINANE ADAM ASSURANCES'}">AINANE ADAM ASSURANCES</option>
+                            <option value="ASSURANCES ZBIRAT" th:selected="${contact.nomInterm eq 'ASSURANCES ZBIRAT'}">ASSURANCES ZBIRAT</option>
+                            <option value="EPEGA CONSEILS" th:selected="${contact.nomInterm eq 'EPEGA CONSEILS'}">EPEGA CONSEILS</option>
+                            <option value="ASSURANCE LA CONTINENTALE" th:selected="${contact.nomInterm eq 'ASSURANCE LA CONTINENTALE'}">ASSURANCE LA CONTINENTALE</option>
+                            <option value="ASCOBA" th:selected="${contact.nomInterm eq 'ASCOBA'}">ASCOBA</option>
+                            <option value="COGEFAS" th:selected="${contact.nomInterm eq 'COGEFAS'}">COGEFAS</option>
+                            <option value="ACECA FES" th:selected="${contact.nomInterm eq 'ACECA FES'}">ACECA FES</option>
+                            <option value="MMH ASSURANCES" th:selected="${contact.nomInterm eq 'MMH ASSURANCES'}">MMH ASSURANCES</option>
+                            <option value="DADES COURTAGE ASSURANCES" th:selected="${contact.nomInterm eq 'DADES COURTAGE ASSURANCES'}">DADES COURTAGE ASSURANCES</option>
+                            <option value="ASLI ASSURANCES SARL " th:selected="${contact.nomInterm eq 'ASLI ASSURANCES SARL '}">ASLI ASSURANCES SARL </option>
+                            <option value="ISMAILIA ASSURANCES" th:selected="${contact.nomInterm eq 'ISMAILIA ASSURANCES'}">ISMAILIA ASSURANCES</option>
+                            <option value="INJAD ASSURANCE" th:selected="${contact.nomInterm eq 'INJAD ASSURANCE'}">INJAD ASSURANCE</option>
+                            <option value="ARTAI GLOBAL ASSURANCES" th:selected="${contact.nomInterm eq 'ARTAI GLOBAL ASSURANCES'}">ARTAI GLOBAL ASSURANCES</option>
+                            <option value="ASSURANCES AL MAGHREB AL KABIR SARL" th:selected="${contact.nomInterm eq 'ASSURANCES AL MAGHREB AL KABIR SARL'}">ASSURANCES AL MAGHREB AL KABIR SARL</option>
+                            <option value="LEGITIME CONSEIL EN ASSURANCE" th:selected="${contact.nomInterm eq 'LEGITIME CONSEIL EN ASSURANCE'}">LEGITIME CONSEIL EN ASSURANCE</option>
+                            <option value="ASSURWI" th:selected="${contact.nomInterm eq 'ASSURWI'}">ASSURWI</option>
+                            <option value="PREVAXE ASSURANCES" th:selected="${contact.nomInterm eq 'PREVAXE ASSURANCES'}">PREVAXE ASSURANCES</option>
+                            <option value="GRLC ASSURANCE" th:selected="${contact.nomInterm eq 'GRLC ASSURANCE'}">GRLC ASSURANCE</option>
+                            <option value="GRAS SAVOYE CASABLANCA" th:selected="${contact.nomInterm eq 'GRAS SAVOYE CASABLANCA'}">GRAS SAVOYE CASABLANCA</option>
+                            <option value="RDFM SARL" th:selected="${contact.nomInterm eq 'RDFM SARL'}">RDFM SARL</option>
+                            <option value="ASK GRAS SAVOYE MEKNES" th:selected="${contact.nomInterm eq 'ASK GRAS SAVOYE MEKNES'}">ASK GRAS SAVOYE MEKNES</option>
+                            <option value="FREE VOICE TOUR HASSAN" th:selected="${contact.nomInterm eq 'FREE VOICE TOUR HASSAN'}">FREE VOICE TOUR HASSAN</option>
+                            <option value="ASK GS SOUSS" th:selected="${contact.nomInterm eq 'ASK GS SOUSS'}">ASK GS SOUSS</option>
+                            <option value="LCCA INSURANCE BROKING" th:selected="${contact.nomInterm eq 'LCCA INSURANCE BROKING'}">LCCA INSURANCE BROKING</option>
+                            <option value="ASK GS MOHAMMEDIA" th:selected="${contact.nomInterm eq 'ASK GS MOHAMMEDIA'}">ASK GS MOHAMMEDIA</option>
+                            <option value="AGMA RABAT" th:selected="${contact.nomInterm eq 'AGMA RABAT'}">AGMA RABAT</option>
+                            <option value="AGMA MARRAKECH" th:selected="${contact.nomInterm eq 'AGMA MARRAKECH'}">AGMA MARRAKECH</option>
+                            <option value="AGMA TANGER" th:selected="${contact.nomInterm eq 'AGMA TANGER'}">AGMA TANGER</option>
+                            <option value="PREVAS SAFI" th:selected="${contact.nomInterm eq 'PREVAS SAFI'}">PREVAS SAFI</option>
+                            <option value="EPEGA LAAYOUNE" th:selected="${contact.nomInterm eq 'EPEGA LAAYOUNE'}">EPEGA LAAYOUNE</option>
+                            <option value="ASSURANCES NAIM" th:selected="${contact.nomInterm eq 'ASSURANCES NAIM'}">ASSURANCES NAIM</option>
+                            <option value="KSA ASSURANCES" th:selected="${contact.nomInterm eq 'KSA ASSURANCES'}">KSA ASSURANCES</option>
+                            <option value="ASSURANCES EPEGA" th:selected="${contact.nomInterm eq 'ASSURANCES EPEGA'}">ASSURANCES EPEGA</option>
+                            <option value="ACECA" th:selected="${contact.nomInterm eq 'ACECA'}">ACECA</option>
+                            <option value="OLEA MAROC" th:selected="${contact.nomInterm eq 'OLEA MAROC'}">OLEA MAROC</option>
+                            <option value="AGMA" th:selected="${contact.nomInterm eq 'AGMA'}">AGMA</option>
+                            <option value="AFMA" th:selected="${contact.nomInterm eq 'AFMA'}">AFMA</option>
+                            <option value="B.E.R.A.CABINET" th:selected="${contact.nomInterm eq 'B.E.R.A.CABINET'}">B.E.R.A.CABINET</option>
+                            <option value="MAGHREBIENNE DE COURTAGE" th:selected="${contact.nomInterm eq 'MAGHREBIENNE DE COURTAGE'}">MAGHREBIENNE DE COURTAGE</option>
+                            <option value="ASSURIANA" th:selected="${contact.nomInterm eq 'ASSURIANA'}">ASSURIANA</option>
+                            <option value="BEASSUR" th:selected="${contact.nomInterm eq 'BEASSUR'}">BEASSUR</option>
+                            <option value="C.T.C.A" th:selected="${contact.nomInterm eq 'C.T.C.A'}">C.T.C.A</option>
+                            <option value="AD-DAMANE" th:selected="${contact.nomInterm eq 'AD-DAMANE'}">AD-DAMANE</option>
+                            <option value="ASSURANCES GHELLAB" th:selected="${contact.nomInterm eq 'ASSURANCES GHELLAB'}">ASSURANCES GHELLAB</option>
+                            <option value="S.C.C.A" th:selected="${contact.nomInterm eq 'S.C.C.A'}">S.C.C.A</option>
+                            <option value="CAGEM MAROC" th:selected="${contact.nomInterm eq 'CAGEM MAROC'}">CAGEM MAROC</option>
+                            <option value="B.A.S.C.O" th:selected="${contact.nomInterm eq 'B.A.S.C.O'}">B.A.S.C.O</option>
+                            <option value="A.C.I" th:selected="${contact.nomInterm eq 'A.C.I'}">A.C.I</option>
+                            <option value="CAM" th:selected="${contact.nomInterm eq 'CAM'}">CAM</option>
+                            <option value="JALLAL ASSURANCES SARL" th:selected="${contact.nomInterm eq 'JALLAL ASSURANCES SARL'}">JALLAL ASSURANCES SARL</option>
+                            <option value="A.G.E.C" th:selected="${contact.nomInterm eq 'A.G.E.C'}">A.G.E.C</option>
+                            <option value="AFRIC EUROPE ASSURANCE" th:selected="${contact.nomInterm eq 'AFRIC EUROPE ASSURANCE'}">AFRIC EUROPE ASSURANCE</option>
+                            <option value="C.A.D.A.I.C" th:selected="${contact.nomInterm eq 'C.A.D.A.I.C'}">C.A.D.A.I.C</option>
+                            <option value="C.G.A.P" th:selected="${contact.nomInterm eq 'C.G.A.P'}">C.G.A.P</option>
+                            <option value="AFMA MARRAKECH" th:selected="${contact.nomInterm eq 'AFMA MARRAKECH'}">AFMA MARRAKECH</option>
+                            <option value="HAL ASSURANCES" th:selected="${contact.nomInterm eq 'HAL ASSURANCES'}">HAL ASSURANCES</option>
+                            <option value="S.A.D.A.S" th:selected="${contact.nomInterm eq 'S.A.D.A.S'}">S.A.D.A.S</option>
+                            <option value="SAMIA ASSURANCE" th:selected="${contact.nomInterm eq 'SAMIA ASSURANCE'}">SAMIA ASSURANCE</option>
+                            <option value="LOUNJA ASSURANCE" th:selected="${contact.nomInterm eq 'LOUNJA ASSURANCE'}">LOUNJA ASSURANCE</option>
+                            <option value="T.E.G.A.M" th:selected="${contact.nomInterm eq 'T.E.G.A.M'}">T.E.G.A.M</option>
+                            <option value="G.T.A.M" th:selected="${contact.nomInterm eq 'G.T.A.M'}">G.T.A.M</option>
+                            <option value="U.G.P.A" th:selected="${contact.nomInterm eq 'U.G.P.A'}">U.G.P.A</option>
+                            <option value="S.O.G.E.S" th:selected="${contact.nomInterm eq 'S.O.G.E.S'}">S.O.G.E.S</option>
+                            <option value="U.N.A.P" th:selected="${contact.nomInterm eq 'U.N.A.P'}">U.N.A.P</option>
+                            <option value="SECURITAS" th:selected="${contact.nomInterm eq 'SECURITAS'}">SECURITAS</option>
+                            <option value="STE DE COURTAGE ASS EL ARABI" th:selected="${contact.nomInterm eq 'STE DE COURTAGE ASS EL ARABI'}">STE DE COURTAGE ASS EL ARABI</option>
+                            <option value="AFMA AGADIR" th:selected="${contact.nomInterm eq 'AFMA AGADIR'}">AFMA AGADIR</option>
+                            <option value="ALPHA ASSURANCES" th:selected="${contact.nomInterm eq 'ALPHA ASSURANCES'}">ALPHA ASSURANCES</option>
+                            <option value="AON ACCOR" th:selected="${contact.nomInterm eq 'AON ACCOR'}">AON ACCOR</option>
+                            <option value="ASSURANCE MERNISSI CIE" th:selected="${contact.nomInterm eq 'ASSURANCE MERNISSI CIE'}">ASSURANCE MERNISSI CIE</option>
+                            <option value="ARBEA" th:selected="${contact.nomInterm eq 'ARBEA'}">ARBEA</option>
+                            <option value="CABCO" th:selected="${contact.nomInterm eq 'CABCO'}">CABCO</option>
+                            <option value="CABINET AFMA TANGER" th:selected="${contact.nomInterm eq 'CABINET AFMA TANGER'}">CABINET AFMA TANGER</option>
+                            <option value="GESTION ETUDES MAROCAINES ASSURANCES GEMA" th:selected="${contact.nomInterm eq 'GESTION ETUDES MAROCAINES ASSURANCES GEMA'}">GESTION ETUDES MAROCAINES ASSURANCES GEMA</option>
+                            <option value="ASSURANCES AIDASSUR SARL" th:selected="${contact.nomInterm eq 'ASSURANCES AIDASSUR SARL'}">ASSURANCES AIDASSUR SARL</option>
+                            <option value="ASSURANCES VIDAL CASABLANCA" th:selected="${contact.nomInterm eq 'ASSURANCES VIDAL CASABLANCA'}">ASSURANCES VIDAL CASABLANCA</option>
+                            <option value="ASSURANCES A.F.G" th:selected="${contact.nomInterm eq 'ASSURANCES A.F.G'}">ASSURANCES A.F.G</option>
+                            <option value="ASSURANCES LA GAZELLE" th:selected="${contact.nomInterm eq 'ASSURANCES LA GAZELLE'}">ASSURANCES LA GAZELLE</option>
+                            <option value="ASSURANCES AKBIB" th:selected="${contact.nomInterm eq 'ASSURANCES AKBIB'}">ASSURANCES AKBIB</option>
+                            <option value="SONAG" th:selected="${contact.nomInterm eq 'SONAG'}">SONAG</option>
+                            <option value="ASSURANCES HALIMI" th:selected="${contact.nomInterm eq 'ASSURANCES HALIMI'}"></option>
+                            <option value="ASSURANCES BENDI" th:selected="${contact.nomInterm eq 'ASSURANCES BENDI'}">ASSURANCES BENDI</option>
+                            <option value="ASSURANCES HEFIRI" th:selected="${contact.nomInterm eq 'ASSURANCES HEFIRI'}">ASSURANCES HEFIRI</option>
+                            <option value="ASSURANCES CHEBLI" th:selected="${contact.nomInterm eq 'ASSURANCES CHEBLI'}">ASSURANCES CHEBLI</option>
+                            <option value="ASSURANCES VIDAL RABAT" th:selected="${contact.nomInterm eq 'ASSURANCES VIDAL RABAT'}">ASSURANCES VIDAL RABAT</option>
+                            <option value="SGDA" th:selected="${contact.nomInterm eq 'SGDA'}">SGDA</option>
+                            <option value="ASSURANCE AL MOUSSANADA" th:selected="${contact.nomInterm eq 'ASSURANCE AL MOUSSANADA'}">ASSURANCE AL MOUSSANADA</option>
+                            <option value="ASSURANCE FOSSECAVE" th:selected="${contact.nomInterm eq 'ASSURANCE FOSSECAVE'}">ASSURANCE FOSSECAVE</option>
+                            <option value="MARINSSUR" th:selected="${contact.nomInterm eq 'MARINSSUR'}">MARINSSUR</option>
+                            <option value="ASK GS TETOUAN" th:selected="${contact.nomInterm eq 'ASK GS TETOUAN'}">ASK GS TETOUAN</option>
+                            <option value="ASSURANCES BELKAHIA FILS S.A.R.L" th:selected="${contact.nomInterm eq 'ASSURANCES BELKAHIA FILS S.A.R.L'}">ASSURANCES BELKAHIA FILS S.A.R.L</option>
+                            <option value="B2M ASSUREUR CONSEIL" th:selected="${contact.nomInterm eq 'B2M ASSUREUR CONSEIL'}">B2M ASSUREUR CONSEIL</option>
+                            <option value="ASSURANCES REUNIES DU SUD" th:selected="${contact.nomInterm eq 'ASSURANCES REUNIES DU SUD'}">ASSURANCES REUNIES DU SUD</option>
+                            <option value="KENASSUR" th:selected="${contact.nomInterm eq 'KENASSUR'}">KENASSUR</option>
+                            <option value="MORO ASSURANCES" th:selected="${contact.nomInterm eq 'MORO ASSURANCES'}">MORO ASSURANCES</option>
+                            <option value="BCS" th:selected="${contact.nomInterm eq 'BCS'}">BCS</option>
+                            <option value="APRIL ASSURANCES" th:selected="${contact.nomInterm eq 'APRIL ASSURANCES'}">APRIL ASSURANCES</option>
+                            <option value="AXIS INSURANCE GROUP" th:selected="${contact.nomInterm eq 'AXIS INSURANCE GROUP'}">AXIS INSURANCE GROUP</option>
+                            <option value="AYDI ASSURANCES SARL" th:selected="${contact.nomInterm eq 'AYDI ASSURANCES SARL'}">AYDI ASSURANCES SARL</option>
+                            <option value="SAFE ASSUR" th:selected="${contact.nomInterm eq 'SAFE ASSUR'}">SAFE ASSUR</option>
+                            <option value="CGA ASSURANCES" th:selected="${contact.nomInterm eq 'CGA ASSURANCES'}">CGA ASSURANCES</option>
+                            <option value="ASSURANCES OUMKALTOUM BENNOUNA" th:selected="${contact.nomInterm eq 'ASSURANCES OUMKALTOUM BENNOUNA'}">ASSURANCES OUMKALTOUM BENNOUNA</option>
+                            <option value="AGENCE WATANI ASSURANCE" th:selected="${contact.nomInterm eq 'AGENCE WATANI ASSURANCE'}">AGENCE WATANI ASSURANCE</option>
+                            <option value="CAAS" th:selected="${contact.nomInterm eq 'CAAS'}">CAAS</option>
+                            <option value="AMCHACHTI ASSURANCES" th:selected="${contact.nomInterm eq 'AMCHACHTI ASSURANCES'}">AMCHACHTI ASSURANCES</option>
+                            <option value="ASSURANCE ZAID" th:selected="${contact.nomInterm eq 'ASSURANCE ZAID'}">ASSURANCE ZAID</option>
+                            <option value="ASSURANCES HASKOURI" th:selected="${contact.nomInterm eq 'ASSURANCES HASKOURI'}">ASSURANCES HASKOURI</option>
+                            <option value="TANGER ASSURANCES CONSEIL" th:selected="${contact.nomInterm eq 'TANGER ASSURANCES CONSEIL'}">TANGER ASSURANCES CONSEIL</option>
+                            <option value="GALAXY ASSURANCES" th:selected="${contact.nomInterm eq 'GALAXY ASSURANCES'}">GALAXY ASSURANCES</option>
+                            <option value="ASSURANCES AL CHAMAL SARL" th:selected="${contact.nomInterm eq 'ASSURANCES AL CHAMAL SARL'}">ASSURANCES AL CHAMAL SARL</option>
+                            <option value="ASSURANCES ZOUHAIR SARL" th:selected="${contact.nomInterm eq 'ASSURANCES ZOUHAIR SARL'}">ASSURANCES ZOUHAIR SARL</option>
+                            <option value="SAAD ASSUR SARL" th:selected="${contact.nomInterm eq 'SAAD ASSUR SARL'}">SAAD ASSUR SARL</option>
+                            <option value="ASSURANCES AL BOUGHAZ SARL" th:selected="${contact.nomInterm eq 'ASSURANCES AL BOUGHAZ SARL'}">ASSURANCES AL BOUGHAZ SARL</option>
+                            <option value="ASSURANCES BELEBHIR SARL" th:selected="${contact.nomInterm eq 'ASSURANCES BELEBHIR SARL'}">ASSURANCES BELEBHIR SARL</option>
+                            <option value="CABINET BOUASSAB FRERES SARL" th:selected="${contact.nomInterm eq 'CABINET BOUASSAB FRERES SARL'}">CABINET BOUASSAB FRERES SARL</option>
+                            <option value="ASSURANCES CHINI" th:selected="${contact.nomInterm eq 'ASSURANCES CHINI'}">ASSURANCES CHINI</option>
+                            <option value="ASSURANCES MBM" th:selected="${contact.nomInterm eq 'ASSURANCES MBM'}">ASSURANCES MBM</option>
+                            <option value="ASSURANCES KHOLTI" th:selected="${contact.nomInterm eq 'ASSURANCES KHOLTI'}">ASSURANCES KHOLTI</option>
+                            <option value="ASSUNOR" th:selected="${contact.nomInterm eq 'ASSUNOR'}">ASSUNOR</option>
+                            <option value="AL HARHOURA ASSURANCE SARL" th:selected="${contact.nomInterm eq 'AL HARHOURA ASSURANCE SARL'}">AL HARHOURA ASSURANCE SARL</option>
+                            <option value="ASSURANCES MAHRAZ" th:selected="${contact.nomInterm eq 'ASSURANCES MAHRAZ'}">ASSURANCES MAHRAZ</option>
+                            <option value="ASSURANCES FAIZ" th:selected="${contact.nomInterm eq 'ASSURANCES FAIZ'}">ASSURANCES FAIZ</option>
+                            <option value="ARZ ASSUREUR CONSEIL" th:selected="${contact.nomInterm eq 'ARZ ASSUREUR CONSEIL'}">ARZ ASSUREUR CONSEIL</option>
+                            <option value="ASSURANCE C.Q.RISK" th:selected="${contact.nomInterm eq 'ASSURANCE C.Q.RISK'}">ASSURANCE C.Q.RISK</option>
+                            <option value="DAMANAT ASSURANCES" th:selected="${contact.nomInterm eq 'DAMANAT ASSURANCES'}">DAMANAT ASSURANCES</option>
+                            <option value="ASSURIS" th:selected="${contact.nomInterm eq 'ASSURIS'}">ASSURIS</option>
+                            <option value="CABINET ASSURANCES LA CAPITALE" th:selected="${contact.nomInterm eq 'CABINET ASSURANCES LA CAPITALE'}">CABINET ASSURANCES LA CAPITALE</option>
+                            <option value="FIKRI MALAK ASSURANCES" th:selected="${contact.nomInterm eq 'FIKRI MALAK ASSURANCES'}">FIKRI MALAK ASSURANCES</option>
+                            <option value="RIAD ASSURANCES" th:selected="${contact.nomInterm eq 'RIAD ASSURANCES'}">RIAD ASSURANCES</option>
+                            <option value="ASSURANCES BENABDELLAH" th:selected="${contact.nomInterm eq 'ASSURANCES BENABDELLAH'}">ASSURANCES BENABDELLAH</option>
+                            <option value="ASSURANCES EL MARKAZ" th:selected="${contact.nomInterm eq 'ASSURANCES EL MARKAZ'}">ASSURANCES EL MARKAZ</option>
+                            <option value="ASSURANCES AFIAC REGRAGUI" th:selected="${contact.nomInterm eq 'ASSURANCES AFIAC REGRAGUI'}">ASSURANCES AFIAC REGRAGUI</option>
+                            <option value="ASSURANCES LYAZIDI FILS" th:selected="${contact.nomInterm eq 'ASSURANCES LYAZIDI FILS'}">ASSURANCES LYAZIDI FILS</option>
+                            <option value="MEHDIA ASSURANCES" th:selected="${contact.nomInterm eq 'MEHDIA ASSURANCES'}">MEHDIA ASSURANCES</option>
+                            <option value="BOUDISS ASSURANCES CONSEILS" th:selected="${contact.nomInterm eq 'BOUDISS ASSURANCES CONSEILS'}">BOUDISS ASSURANCES CONSEILS</option>
+                            <option value="BALAFREJ ASSURANCES SARL" th:selected="${contact.nomInterm eq 'BALAFREJ ASSURANCES SARL'}">BALAFREJ ASSURANCES SARL</option>
+                            <option value="ASSURANCES LA SOURCE SARL" th:selected="${contact.nomInterm eq 'ASSURANCES LA SOURCE SARL'}">ASSURANCES LA SOURCE SARL</option>
+                            <option value="STE CABINET HICHAME BENKIRANE ASSUR RABAT" th:selected="${contact.nomInterm eq 'STE CABINET HICHAME BENKIRANE ASSUR RABAT'}">STE CABINET HICHAME BENKIRANE ASSUR RABAT</option>
+                            <option value="MODERNE ASSURANCE SARL" th:selected="${contact.nomInterm eq 'MODERNE ASSURANCE SARL'}">MODERNE ASSURANCE SARL</option>
+                            <option value="ASSURANCES BELKHEIRI SARL" th:selected="${contact.nomInterm eq 'ASSURANCES BELKHEIRI SARL'}">ASSURANCES BELKHEIRI SARL</option>
+                            <option value="ASSURANCES LYAZIDI SALE" th:selected="${contact.nomInterm eq 'ASSURANCES LYAZIDI SALE'}">ASSURANCES LYAZIDI SALE</option>
+                            <option value="ASSURANCES LYAZIDI HAY RIAD" th:selected="${contact.nomInterm eq 'ASSURANCES LYAZIDI HAY RIAD'}">ASSURANCES LYAZIDI HAY RIAD</option>
+                            <option value="MOBILE ASSURANCES SARL" th:selected="${contact.nomInterm eq 'MOBILE ASSURANCES SARL'}">MOBILE ASSURANCES SARL</option>
+                            <option value="MAZI ASSURANCES SARL AU" th:selected="${contact.nomInterm eq 'MAZI ASSURANCES SARL AU'}">MAZI ASSURANCES SARL AU</option>
+                            <option value="CHAOUI BELMIR ASSURANCE" th:selected="${contact.nomInterm eq 'CHAOUI BELMIR ASSURANCE'}">CHAOUI BELMIR ASSURANCE</option>
+                            <option value="SOCIETE MOROCCOASSURANCES SARL" th:selected="${contact.nomInterm eq 'SOCIETE MOROCCOASSURANCES SARL'}">SOCIETE MOROCCOASSURANCES SARL</option>
+                            <option value="CABINET HICHAM BENKIRANE ASSUR SARL" th:selected="${contact.nomInterm eq 'CABINET HICHAM BENKIRANE ASSUR SARL'}">CABINET HICHAM BENKIRANE ASSUR SARL</option>
+                            <option value="TAAMINAT EDDAMINE" th:selected="${contact.nomInterm eq 'TAAMINAT EDDAMINE'}">TAAMINAT EDDAMINE</option>
+                            <option value="ESBAIY MHAMMED ASSURANCE SARL" th:selected="${contact.nomInterm eq 'ESBAIY MHAMMED ASSURANCE SARL'}">ESBAIY MHAMMED ASSURANCE SARL</option>
+                            <option value="STE VERASSUR" th:selected="${contact.nomInterm eq 'STE VERASSUR'}">STE VERASSUR</option>
+                            <option value="BENQLILOU ASSURANCES KENITRA" th:selected="${contact.nomInterm eq 'BENQLILOU ASSURANCES KENITRA'}">BENQLILOU ASSURANCES KENITRA</option>
+                            <option value="FIKRI MALAK ASSURANCE" th:selected="${contact.nomInterm eq 'FIKRI MALAK ASSURANCE'}">FIKRI MALAK ASSURANCE</option>
+                            <option value="STE DAIZ ASSURANCE" th:selected="${contact.nomInterm eq 'STE DAIZ ASSURANCE'}">STE DAIZ ASSURANCE</option>
+                            <option value="ALIA ASSURANCES" th:selected="${contact.nomInterm eq 'ALIA ASSURANCES'}">ALIA ASSURANCES</option>
+                            <option value="MAROC ASSURANCE" th:selected="${contact.nomInterm eq 'MAROC ASSURANCE'}">MAROC ASSURANCE</option>
+                            <option value="ASSURANCES SABAH SARL" th:selected="${contact.nomInterm eq 'ASSURANCES SABAH SARL'}">ASSURANCES SABAH SARL</option>
+                            <option value="HAJJI YOUSSEF ASSURANCE SARL" th:selected="${contact.nomInterm eq 'HAJJI YOUSSEF ASSURANCE SARL'}">HAJJI YOUSSEF ASSURANCE SARL</option>
+                            <option value="SECURANCE" th:selected="${contact.nomInterm eq 'SECURANCE'}">SECURANCE</option>
+                            <option value="ASSURANCES LES BENEDICTIONS" th:selected="${contact.nomInterm eq 'ASSURANCES LES BENEDICTIONS'}">ASSURANCES LES BENEDICTIONS</option>
+                            <option value="ASSURANCES ATTAAOUNE" th:selected="${contact.nomInterm eq 'ASSURANCES ATTAAOUNE'}">ASSURANCES ATTAAOUNE</option>
+                            <option value="ASSURAMA" th:selected="${contact.nomInterm eq 'ASSURAMA'}">ASSURAMA</option>
+                            <option value="ASSURANCES MOHAMMED BENNIS" th:selected="${contact.nomInterm eq 'ASSURANCES MOHAMMED BENNIS'}">ASSURANCES MOHAMMED BENNIS</option>
+                            <option value="ASSURANCES GIRS" th:selected="${contact.nomInterm eq 'ASSURANCES GIRS'}">ASSURANCES GIRS</option>
+                            <option value="RENOVASSUR" th:selected="${contact.nomInterm eq 'RENOVASSUR'}">RENOVASSUR</option>
+                            <option value="BMCE ASSURANCES" th:selected="${contact.nomInterm eq 'BMCE ASSURANCES'}">BMCE ASSURANCES</option>
+                            <option value="FIDELASSUR" th:selected="${contact.nomInterm eq 'FIDELASSUR'}">FIDELASSUR</option>
+                            <option value="OMEGA CONSEIL ASSURANCE" th:selected="${contact.nomInterm eq 'OMEGA CONSEIL ASSURANCE'}">OMEGA CONSEIL ASSURANCE</option>
+                            <option value="ASSURANCES LA FRATERNITE" th:selected="${contact.nomInterm eq 'ASSURANCES LA FRATERNITE'}">ASSURANCES LA FRATERNITE</option>
+                            <option value="AMIR ASSUR" th:selected="${contact.nomInterm eq 'AMIR ASSUR'}">AMIR ASSUR</option>
+                            <option value="ASSUREMENT" th:selected="${contact.nomInterm eq 'ASSUREMENT'}">ASSUREMENT</option>
+                            <option value="ASSURANCES HERRADI" th:selected="${contact.nomInterm eq 'ASSURANCES HERRADI'}">ASSURANCES HERRADI</option>
+                            <option value="VECTEUR ASSURANCE SARL" th:selected="${contact.nomInterm eq 'VECTEUR ASSURANCE SARL'}">VECTEUR ASSURANCE SARL</option>
+                            <option value="ASSURANCE IFRY" th:selected="${contact.nomInterm eq 'ASSURANCE IFRY'}">ASSURANCE IFRY</option>
+                            <option value="ASSURANCES SOUFIANE SARL" th:selected="${contact.nomInterm eq 'ASSURANCES SOUFIANE SARL'}">ASSURANCES SOUFIANE SARL</option>
+                            <option value="ASSURANCES CASA-EST SARL" th:selected="${contact.nomInterm eq 'ASSURANCES CASA-EST SARL'}">ASSURANCES CASA-EST SARL</option>
+                            <option value="ASSURANCE RIAH SARL" th:selected="${contact.nomInterm eq 'ASSURANCE RIAH SARL'}">ASSURANCE RIAH SARL</option>
+                            <option value="ASSURANCES EL ARCHI" th:selected="${contact.nomInterm eq 'ASSURANCES EL ARCHI'}">ASSURANCES EL ARCHI</option>
+                            <option value="NOUR EZZAHRAA SARL" th:selected="${contact.nomInterm eq 'NOUR EZZAHRAA SARL'}">NOUR EZZAHRAA SARL</option>
+                            <option value="DREAM ASSURANCE" th:selected="${contact.nomInterm eq 'DREAM ASSURANCE'}">DREAM ASSURANCE</option>
+                            <option value="ASSURANCE KARMOUCHI SARL" th:selected="${contact.nomInterm eq 'ASSURANCE KARMOUCHI SARL'}">ASSURANCE KARMOUCHI SARL</option>
+                            <option value="ASSURANCE ASSIHAM" th:selected="${contact.nomInterm eq 'ASSURANCE ASSIHAM'}">ASSURANCE ASSIHAM</option>
+                            <option value="ASSURANCES SIDI BENNOUR SARL" th:selected="${contact.nomInterm eq 'ASSURANCES SIDI BENNOUR SARL'}">ASSURANCES SIDI BENNOUR SARL</option>
+                            <option value="ASSURANCE OSCAR SARL" th:selected="${contact.nomInterm eq 'ASSURANCE OSCAR SARL'}">ASSURANCE OSCAR SARL</option>
+                            <option value="VILLASUR SARL" th:selected="${contact.nomInterm eq 'VILLASUR SARL'}">VILLASUR SARL</option>
+                            <option value="ASSURANCE MOUHSSINE ASSUR SARLAU" th:selected="${contact.nomInterm eq 'ASSURANCE MOUHSSINE ASSUR SARLAU'}">ASSURANCE MOUHSSINE ASSUR SARLAU</option>
+                            <option value="ASSURANCES EL GUARMAI SARL" th:selected="${contact.nomInterm eq 'ASSURANCES EL GUARMAI SARL'}">ASSURANCES EL GUARMAI SARL</option>
+                            <option value="INTEGRITE ASSURANCES" th:selected="${contact.nomInterm eq 'INTEGRITE ASSURANCES'}">INTEGRITE ASSURANCES</option>
+                            <option value="ASSURANCES AL MAARIFA SARL" th:selected="${contact.nomInterm eq 'ASSURANCES AL MAARIFA SARL'}">ASSURANCES AL MAARIFA SARL</option>
+                            <option value="ASSURANCES MARZOUKI SARL" th:selected="${contact.nomInterm eq 'ASSURANCES MARZOUKI SARL'}">ASSURANCES MARZOUKI SARL</option>
+                            <option value="ASSURANCES TIT MELLIL" th:selected="${contact.nomInterm eq 'ASSURANCES TIT MELLIL'}">ASSURANCES TIT MELLIL</option>
+                            <option value="SOCIETE AL HIKMA ASSURANCE SARL" th:selected="${contact.nomInterm eq 'SOCIETE AL HIKMA ASSURANCE SARL'}">SOCIETE AL HIKMA ASSURANCE SARL</option>
+                            <option value="ASSURANCES ABOUAB DAR BOUAZZA SARL" th:selected="${contact.nomInterm eq 'ASSURANCES ABOUAB DAR BOUAZZA SARL'}">ASSURANCES ABOUAB DAR BOUAZZA SARL</option>
+                            <option value="ECOASSUR SARL" th:selected="${contact.nomInterm eq 'ECOASSUR SARL'}">ECOASSUR SARL</option>
+                            <option value="NOURASSUR SARL AU" th:selected="${contact.nomInterm eq 'NOURASSUR SARL AU'}">NOURASSUR SARL AU</option>
+                            <option value="STE NABIL ASSURANCE SARL" th:selected="${contact.nomInterm eq 'STE NABIL ASSURANCE SARL'}">STE NABIL ASSURANCE SARL</option>
+                            <option value="STE NAHJASSUR SARL" th:selected="${contact.nomInterm eq 'STE NAHJASSUR SARL'}">STE NAHJASSUR SARL</option>
+                            <option value="ASSURANCES REDASSUR SARL AU" th:selected="${contact.nomInterm eq 'ASSURANCES REDASSUR SARL AU'}">ASSURANCES REDASSUR SARL AU</option>
+                            <option value="PROTECT ASSURANCES" th:selected="${contact.nomInterm eq 'PROTECT ASSURANCES'}">PROTECT ASSURANCES</option>
+                            <option value="AZZOUBIRE ASSURANCE" th:selected="${contact.nomInterm eq 'AZZOUBIRE ASSURANCE'}">AZZOUBIRE ASSURANCE</option>
+                            <option value="OLKOM ASSURANCES" th:selected="${contact.nomInterm eq 'OLKOM ASSURANCES'}">OLKOM ASSURANCES</option>
+                            <option value="PERFECT ASSUR SARL" th:selected="${contact.nomInterm eq 'PERFECT ASSUR SARL'}">PERFECT ASSUR SARL</option>
+                            <option value="CONSEIL PRO ASSURANCE" th:selected="${contact.nomInterm eq 'CONSEIL PRO ASSURANCE'}">CONSEIL PRO ASSURANCE</option>
+                            <option value="ORUS ASSURANCES" th:selected="${contact.nomInterm eq 'ORUS ASSURANCES'}">ORUS ASSURANCES</option>
+                            <option value="ASSURANCES ZOHOUR" th:selected="${contact.nomInterm eq 'ASSURANCES ZOHOUR'}">ASSURANCES ZOHOUR</option>
+                            <option value="ASSURANCES BOUAROUROU" th:selected="${contact.nomInterm eq 'ASSURANCES BOUAROUROU'}">ASSURANCES BOUAROUROU</option>
+                            <option value="ASSURANCES ALAMI" th:selected="${contact.nomInterm eq 'ASSURANCES ALAMI'}">ASSURANCES ALAMI</option>
+                            <option value="ASSURANCES MTALSI HAMID SARL" th:selected="${contact.nomInterm eq 'ASSURANCES MTALSI HAMID SARL'}">ASSURANCES MTALSI HAMID SARL</option>
+                            <option value="ASSURANCES GUERRAB" th:selected="${contact.nomInterm eq 'ASSURANCES GUERRAB'}">ASSURANCES GUERRAB</option>
+                            <option value="ASSURANCES HMAMI" th:selected="${contact.nomInterm eq 'ASSURANCES HMAMI'}">ASSURANCES HMAMI</option>
+                            <option value="ASSURANCES TALLA" th:selected="${contact.nomInterm eq 'ASSURANCES TALLA'}">ASSURANCES TALLA</option>
+                            <option value="OUADIE ASSURANCES" th:selected="${contact.nomInterm eq 'OUADIE ASSURANCES'}">OUADIE ASSURANCES</option>
+                            <option value="CONFORT ASSURANCES MIDELT" th:selected="${contact.nomInterm eq 'CONFORT ASSURANCES MIDELT'}">CONFORT ASSURANCES MIDELT</option>
+                            <option value="ASSURANCE CHARIBA SARL" th:selected="${contact.nomInterm eq 'ASSURANCE CHARIBA SARL'}">ASSURANCE CHARIBA SARL</option>
+                            <option value="ASSURANCES BENKHALDOUN" th:selected="${contact.nomInterm eq 'ASSURANCES BENKHALDOUN'}">ASSURANCES BENKHALDOUN</option>
+                            <option value="ASSURANCES FILALI" th:selected="${contact.nomInterm eq 'ASSURANCES FILALI'}">ASSURANCES FILALI</option>
+                            <option value="ASSURANCES ANAS SARL" th:selected="${contact.nomInterm eq 'ASSURANCES ANAS SARL'}">ASSURANCES ANAS SARL</option>
+                            <option value="ASSURANCES CONSEIL TAOUFIK" th:selected="${contact.nomInterm eq 'ASSURANCES CONSEIL TAOUFIK'}">ASSURANCES CONSEIL TAOUFIK</option>
+                            <option value="ASSURANCES FOUGHAL DOUZI" th:selected="${contact.nomInterm eq 'ASSURANCES FOUGHAL DOUZI'}">ASSURANCES FOUGHAL DOUZI</option>
+                            <option value="ASSURANCES BENABDALLAH FES SARL" th:selected="${contact.nomInterm eq 'ASSURANCES BENABDALLAH FES SARL'}">ASSURANCES BENABDALLAH FES SARL</option>
+                            <option value="ASSURANCES BENCHEMSI SAIARH" th:selected="${contact.nomInterm eq 'ASSURANCES BENCHEMSI SAIARH'}">ASSURANCES BENCHEMSI SAIARH</option>
+                            <option value="AZROU ASSURANCES CONSEILS" th:selected="${contact.nomInterm eq 'AZROU ASSURANCES CONSEILS'}">AZROU ASSURANCES CONSEILS</option>
+                            <option value="REFLEX ASSURANCE" th:selected="${contact.nomInterm eq 'REFLEX ASSURANCE'}">REFLEX ASSURANCE</option>
+                            <option value="BELLA ASSURANCES" th:selected="${contact.nomInterm eq 'BELLA ASSURANCES'}">BELLA ASSURANCES</option>
+                            <option value="OASIS ASSURANCES SARL" th:selected="${contact.nomInterm eq 'OASIS ASSURANCES SARL'}">OASIS ASSURANCES SARL</option>
+                            <option value="KOUBI ASSUR SARL" th:selected="${contact.nomInterm eq 'KOUBI ASSUR SARL'}">KOUBI ASSUR SARL</option>
+                            <option value="ASSURANCES AHMED GOUDAN" th:selected="${contact.nomInterm eq 'ASSURANCES AHMED GOUDAN'}">ASSURANCES AHMED GOUDAN</option>
+                            <option value="JAADA ET CHBILI SARL" th:selected="${contact.nomInterm eq 'JAADA ET CHBILI SARL'}">JAADA ET CHBILI SARL</option>
+                            <option value="ARRAKHAE ASSURANCES SARL" th:selected="${contact.nomInterm eq 'ARRAKHAE ASSURANCES SARL'}">ARRAKHAE ASSURANCES SARL</option>
+                            <option value="ASSURANCE OUEDZA TAOURIRT" th:selected="${contact.nomInterm eq 'ASSURANCE OUEDZA TAOURIRT'}">ASSURANCE OUEDZA TAOURIRT</option>
+                            <option value="ASSURANCE NEKOR SARL" th:selected="${contact.nomInterm eq 'ASSURANCE NEKOR SARL'}">ASSURANCE NEKOR SARL</option>
+                            <option value="ASSURANCE AL HAMOUTI SARL" th:selected="${contact.nomInterm eq 'ASSURANCE AL HAMOUTI SARL'}">ASSURANCE AL HAMOUTI SARL</option>
+                            <option value="STE SIDRA ASSURANCE SARL" th:selected="${contact.nomInterm eq 'STE SIDRA ASSURANCE SARL'}">STE SIDRA ASSURANCE SARL</option>
+                            <option value="SUR ASSUR SARL" th:selected="${contact.nomInterm eq 'SUR ASSUR SARL'}">SUR ASSUR SARL</option>
+                            <option value="ASSURANCES 2M SARL" th:selected="${contact.nomInterm eq 'ASSURANCES 2M SARL'}">ASSURANCES 2M SARL</option>
+                            <option value="UNAE" th:selected="${contact.nomInterm eq 'UNAE'}">UNAE</option>
+                            <option value="ASSURANCES BOUZID" th:selected="${contact.nomInterm eq 'ASSURANCES BOUZID'}">ASSURANCES BOUZID</option>
+                            <option value="ASSURANCES AL HOCEIMA" th:selected="${contact.nomInterm eq 'ASSURANCES AL HOCEIMA'}">ASSURANCES AL HOCEIMA</option>
+                            <option value="ASSURANCE CHOA SARL" th:selected="${contact.nomInterm eq 'ASSURANCE CHOA SARL'}">ASSURANCE CHOA SARL</option>
+                            <option value="EL GHAZAOUATE ASSURANCES" th:selected="${contact.nomInterm eq 'EL GHAZAOUATE ASSURANCES'}">EL GHAZAOUATE ASSURANCES</option>
+                            <option value="ASSURANCE OUSSOU" th:selected="${contact.nomInterm eq 'ASSURANCE OUSSOU'}">ASSURANCE OUSSOU</option>
+                            <option value="STE ASSURANCES ZAAF" th:selected="${contact.nomInterm eq 'STE ASSURANCES ZAAF'}">STE ASSURANCES ZAAF</option>
+                            <option value="MOHAMED EL AMMARI ASSURANCE" th:selected="${contact.nomInterm eq 'MOHAMED EL AMMARI ASSURANCE'}">MOHAMED EL AMMARI ASSURANCE</option>
+                            <option value="ENERGIC CONSEIL SAMAH" th:selected="${contact.nomInterm eq 'ENERGIC CONSEIL SAMAH'}">ENERGIC CONSEIL SAMAH</option>
+                            <option value="PROXY ASSURANCES" th:selected="${contact.nomInterm eq 'PROXY ASSURANCES'}">PROXY ASSURANCES</option>
+                            <option value="ASSURANCES EL BAHIA" th:selected="${contact.nomInterm eq 'ASSURANCES EL BAHIA'}">ASSURANCES EL BAHIA</option>
+                            <option value="ASSURANCES BERRYANE" th:selected="${contact.nomInterm eq 'ASSURANCES BERRYANE'}">ASSURANCES BERRYANE</option>
+                            <option value="CABINET ASSURANCES HADJ MOHAMED AOUROUD" th:selected="${contact.nomInterm eq 'CABINET ASSURANCES HADJ MOHAMED AOUROUD'}">CABINET ASSURANCES HADJ MOHAMED AOUROUD</option>
+                            <option value="ASSURANCES CHETTO" th:selected="${contact.nomInterm eq 'ASSURANCES CHETTO'}">ASSURANCES CHETTO</option>
+                            <option value="ASMAA ASSALAMA" th:selected="${contact.nomInterm eq 'ASMAA ASSALAMA'}">ASMAA ASSALAMA</option>
+                            <option value="ASSUR AL WATA-ESS SARL" th:selected="${contact.nomInterm eq 'ASSUR AL WATA-ESS SARL'}">ASSUR AL WATA-ESS SARL</option>
+                            <option value="TAAMIN COM" th:selected="${contact.nomInterm eq 'TAAMIN COM'}">TAAMIN COM</option>
+                            <option value="ASSURANCES AVENIR DU SAHARA" th:selected="${contact.nomInterm eq 'ASSURANCES AVENIR DU SAHARA'}">ASSURANCES AVENIR DU SAHARA</option>
+                            <option value="STE BOUHRIGA ASSURANCES SARL" th:selected="${contact.nomInterm eq 'STE BOUHRIGA ASSURANCES SARL'}">STE BOUHRIGA ASSURANCES SARL</option>
+                            <option value="LE BASTION" th:selected="${contact.nomInterm eq 'LE BASTION'}">LE BASTION</option>
+                            <option value="ASSURANCES CHARAF" th:selected="${contact.nomInterm eq 'ASSURANCES CHARAF'}">ASSURANCES CHARAF</option>
+                            <option value="PACKASSUR" th:selected="${contact.nomInterm eq 'PACKASSUR'}">PACKASSUR</option>
+                            <option value="ESPACE ASSURANCE CONSEIL BOUHNIK" th:selected="${contact.nomInterm eq 'ESPACE ASSURANCE CONSEIL BOUHNIK'}">ESPACE ASSURANCE CONSEIL BOUHNIK</option>
+                            <option value="IZIKI ASSUR" th:selected="${contact.nomInterm eq 'IZIKI ASSUR'}">IZIKI ASSUR</option>
+                            <option value="TARIK AL KHAIR" th:selected="${contact.nomInterm eq 'TARIK AL KHAIR'}">TARIK AL KHAIR</option>
+                            <option value="ASSURANCES ES-SAADI" th:selected="${contact.nomInterm eq 'ASSURANCES ES-SAADI'}">ASSURANCES ES-SAADI</option>
+                            <option value="ERRAFAY ASSURANCE CONSEIL" th:selected="${contact.nomInterm eq 'ERRAFAY ASSURANCE CONSEIL'}">ERRAFAY ASSURANCE CONSEIL</option>
+                            <option value="ASSIF ASSURANCES ET CONSEILS" th:selected="${contact.nomInterm eq 'ASSIF ASSURANCES ET CONSEILS'}">ASSIF ASSURANCES ET CONSEILS</option>
+                            <option value="ECHAKROUNI ASSURANCES SARL" th:selected="${contact.nomInterm eq 'ECHAKROUNI ASSURANCES SARL'}">ECHAKROUNI ASSURANCES SARL</option>
+                            <option value="BOUMOUS ASSURANCE" th:selected="${contact.nomInterm eq 'BOUMOUS ASSURANCE'}">BOUMOUS ASSURANCE</option>
+                            <option value="LE COMPTOIR ASSURANCES" th:selected="${contact.nomInterm eq 'LE COMPTOIR ASSURANCES'}">LE COMPTOIR ASSURANCES</option>
+                            <option value="BOUAGLOU ASSURANCE SARL" th:selected="${contact.nomInterm eq 'BOUAGLOU ASSURANCE SARL'}">BOUAGLOU ASSURANCE SARL</option>
+                            <option value="ASSURANCES OUED SOUS" th:selected="${contact.nomInterm eq 'ASSURANCES OUED SOUS'}">ASSURANCES OUED SOUS</option>
+                            <option value="AL ANSAR ASSURANCES SARL" th:selected="${contact.nomInterm eq 'AL ANSAR ASSURANCES SARL'}">AL ANSAR ASSURANCES SARL</option>
+                            <option value="TACHAOUINE ASSURANCE SARL_AU" th:selected="${contact.nomInterm eq 'TACHAOUINE ASSURANCE SARL_AU'}">TACHAOUINE ASSURANCE SARL_AU</option>
+                            <option value="VITA ASSURANCE" th:selected="${contact.nomInterm eq 'VITA ASSURANCE'}">VITA ASSURANCE</option>
+                            <option value="DYNAMIC ASSURANCES SARL" th:selected="${contact.nomInterm eq 'DYNAMIC ASSURANCES SARL'}">DYNAMIC ASSURANCES SARL</option>
+                            <option value="MAYAR ASSURANCES SARL" th:selected="${contact.nomInterm eq 'MAYAR ASSURANCES SARL'}">MAYAR ASSURANCES SARL</option>
+                            <option value="ATTAOUKIL ASSURANCES SARL" th:selected="${contact.nomInterm eq 'ATTAOUKIL ASSURANCES SARL'}">ATTAOUKIL ASSURANCES SARL</option>
+                            <option value="LAKHMIRI ASSURANCES SARL" th:selected="${contact.nomInterm eq 'LAKHMIRI ASSURANCES SARL'}">LAKHMIRI ASSURANCES SARL</option>
+                            <option value="AATIKFILS ASSURANCES SARL" th:selected="${contact.nomInterm eq 'AATIKFILS ASSURANCES SARL'}">AATIKFILS ASSURANCES SARL</option>
+                            <option value="ASSURANCES ELKIRAM" th:selected="${contact.nomInterm eq 'ASSURANCES ELKIRAM'}">ASSURANCES ELKIRAM</option>
+                            <option value="ASSURANCE BOUZAGHRANE" th:selected="${contact.nomInterm eq 'ASSURANCE BOUZAGHRANE'}">ASSURANCE BOUZAGHRANE</option>
+                            <option value="STE ASSURANCES TALIOUINE SARL" th:selected="${contact.nomInterm eq 'STE ASSURANCES TALIOUINE SARL'}">STE ASSURANCES TALIOUINE SARL</option>
+                            <option value="GHANANE ASSURANCES" th:selected="${contact.nomInterm eq 'GHANANE ASSURANCES'}">GHANANE ASSURANCES</option>
+                            <option value="EL BOUHTOURI ASSURANCE" th:selected="${contact.nomInterm eq 'EL BOUHTOURI ASSURANCE'}">EL BOUHTOURI ASSURANCE</option>
+                            <option value="ASSURANCE BOUTADGHART" th:selected="${contact.nomInterm eq 'ASSURANCE BOUTADGHART'}">ASSURANCE BOUTADGHART</option>
+                            <option value="ASSURANCE MOKRIM" th:selected="${contact.nomInterm eq 'ASSURANCE MOKRIM'}">ASSURANCE MOKRIM</option>
+                            <option value="ASSURANCES ANOUAL" th:selected="${contact.nomInterm eq 'ASSURANCES ANOUAL'}">ASSURANCES ANOUAL</option>
+                            <option value="RAED ASSURANCES" th:selected="${contact.nomInterm eq 'RAED ASSURANCES'}">RAED ASSURANCES</option>
+                            <option value="BOUKHALEF ASSURANCES" th:selected="${contact.nomInterm eq 'BOUKHALEF ASSURANCES'}">BOUKHALEF ASSURANCES</option>
+                            <option value="GROUPE ASSURANCES MOSTAINE" th:selected="${contact.nomInterm eq 'GROUPE ASSURANCES MOSTAINE'}">GROUPE ASSURANCES MOSTAINE</option>
+                            <option value="EXCELLIUM ASSURANCE" th:selected="${contact.nomInterm eq 'EXCELLIUM ASSURANCE'}">EXCELLIUM ASSURANCE</option>
+                            <option value="ASSURANCE BELAKRY" th:selected="${contact.nomInterm eq 'ASSURANCE BELAKRY'}">ASSURANCE BELAKRY</option>
+                            <option value="YARASSURANCE" th:selected="${contact.nomInterm eq 'YARASSURANCE'}">YARASSURANCE</option>
+                            <option value="NEW ASSURANCE" th:selected="${contact.nomInterm eq 'NEW ASSURANCE'}">NEW ASSURANCE</option>
+                            <option value="ASSURANCE DAR DMANA" th:selected="${contact.nomInterm eq 'ASSURANCE DAR DMANA'}">ASSURANCE DAR DMANA</option>
+                            <option value="ASSURANCES NINI" th:selected="${contact.nomInterm eq 'ASSURANCES NINI'}">ASSURANCES NINI</option>
+                            <option value="TOUIL ASSURANCES" th:selected="${contact.nomInterm eq 'TOUIL ASSURANCES'}">TOUIL ASSURANCES</option>
+                            <option value="ASSURANCES AL MADAR" th:selected="${contact.nomInterm eq 'ASSURANCES AL MADAR'}">ASSURANCES AL MADAR</option>
+                            <option value="ASSURANCES TASNIM" th:selected="${contact.nomInterm eq 'ASSURANCES TASNIM'}">ASSURANCES TASNIM</option>
+                            <option value="ASSURANCE BAZI" th:selected="${contact.nomInterm eq 'ASSURANCE BAZI'}">ASSURANCE BAZI</option>
+                            <option value="SECURI ASSUR" th:selected="${contact.nomInterm eq 'SECURI ASSUR'}">SECURI ASSUR</option>
+                            <option value="ASSURANCE BOUHMAD" th:selected="${contact.nomInterm eq 'ASSURANCE BOUHMAD'}">ASSURANCE BOUHMAD</option>
+                            <option value="ASSURANCES AL YOUSSRE" th:selected="${contact.nomInterm eq 'ASSURANCES AL YOUSSRE'}">ASSURANCES AL YOUSSRE</option>
+                            <option value="EXCELLANCE ASSURANCES FES" th:selected="${contact.nomInterm eq 'EXCELLANCE ASSURANCES FES'}">EXCELLANCE ASSURANCES FES</option>
+                            <option value="ASSURANCES ANNASR" th:selected="${contact.nomInterm eq 'ASSURANCES ANNASR'}">ASSURANCES ANNASR</option>
+                            <option value="UNION ASSUR" th:selected="${contact.nomInterm eq 'UNION ASSUR'}">UNION ASSUR</option>
+                            <option value="YANASSURANCE" th:selected="${contact.nomInterm eq 'YANASSURANCE'}">YANASSURANCE</option>
+                            <option value="SUD SEGURO" th:selected="${contact.nomInterm eq 'SUD SEGURO'}">SUD SEGURO</option>
+                            <option value="ASSURANCE AL MOUSSAHABA" th:selected="${contact.nomInterm eq 'ASSURANCE AL MOUSSAHABA'}">ASSURANCE AL MOUSSAHABA</option>
+                            <option value="EL AZZOUZIA ASSURANCE" th:selected="${contact.nomInterm eq 'EL AZZOUZIA ASSURANCE'}">EL AZZOUZIA ASSURANCE</option>
+                            <option value="ASSURANCES TALMESTE" th:selected="${contact.nomInterm eq 'ASSURANCES TALMESTE'}">ASSURANCES TALMESTE</option>
+                            <option value="COIN DE LASSURANCE" th:selected="${contact.nomInterm eq 'COIN DE LASSURANCE'}">COIN DE LASSURANCE</option>
+                            <option value="STE RANAT ASSURANCE-CONSEIL" th:selected="${contact.nomInterm eq 'STE RANAT ASSURANCE-CONSEIL'}">STE RANAT ASSURANCE-CONSEIL</option>
+                            <option value="ASSURANCES RAMI" th:selected="${contact.nomInterm eq 'ASSURANCES RAMI'}">ASSURANCES RAMI</option>
+                            <option value="ELMAZGHI ASSURANCES" th:selected="${contact.nomInterm eq 'ELMAZGHI ASSURANCES'}">ELMAZGHI ASSURANCES</option>
+                            <option value="SAWAB ASSURANCE" th:selected="${contact.nomInterm eq 'SAWAB ASSURANCE'}">SAWAB ASSURANCE</option>
+                            <option value="ALAMAL ZAROILI" th:selected="${contact.nomInterm eq 'ALAMAL ZAROILI'}">ALAMAL ZAROILI</option>
+                            <option value="ASSURANCES EZ-ZEGHARI" th:selected="${contact.nomInterm eq 'ASSURANCES EZ-ZEGHARI'}">ASSURANCES EZ-ZEGHARI</option>
+                            <option value="CONECTE ASSURANCE" th:selected="${contact.nomInterm eq 'CONECTE ASSURANCE'}">CONECTE ASSURANCE</option>
+                            <option value="Assurances ZAERS" th:selected="${contact.nomInterm eq 'Assurances ZAERS'}">Assurances ZAERS</option>
+                            <option value="SEBKI ASSURANCES" th:selected="${contact.nomInterm eq 'SEBKI ASSURANCES'}">SEBKI ASSURANCES</option>
+                            <option value="ALTO ASSURANCES" th:selected="${contact.nomInterm eq 'ALTO ASSURANCES'}">ALTO ASSURANCES</option>
+                            <option value="ASSURANCE RAZZOUKI" th:selected="${contact.nomInterm eq 'ASSURANCE RAZZOUKI'}">ASSURANCE RAZZOUKI</option>
+                            <option value="ASSURANCES ZOUMI" th:selected="${contact.nomInterm eq 'ASSURANCES ZOUMI'}">ASSURANCES ZOUMI</option>
+                            <option value="MOUZA ASSURANCES" th:selected="${contact.nomInterm eq 'MOUZA ASSURANCES'}">MOUZA ASSURANCES</option>
+                            <option value="BGD AGADIR" th:selected="${contact.nomInterm eq 'BGD AGADIR'}">BGD AGADIR</option>
+                            <option value="BGD MARRAKECH HIVERNAGE" th:selected="${contact.nomInterm eq 'BGD MARRAKECH HIVERNAGE'}">BGD MARRAKECH HIVERNAGE</option>
+                            <option value="BGD CASA" th:selected="${contact.nomInterm eq 'BGD CASA'}">BGD CASA</option>
+                            <option value="BGD OUJDA" th:selected="${contact.nomInterm eq 'BGD OUJDA'}">BGD OUJDA</option>
+                            <option value="BGD FES" th:selected="${contact.nomInterm eq 'BGD FES'}">BGD FES</option>
+                            <option value="BGD TANGER" th:selected="${contact.nomInterm eq 'BGD TANGER'}">BGD TANGER</option>
+                            <option value="BGD RABAT" th:selected="${contact.nomInterm eq 'BGD RABAT'}">BGD RABAT</option>
+                            <option value="BGD INEZGANE" th:selected="${contact.nomInterm eq 'BGD INEZGANE'}">BGD INEZGANE</option>
+                            <option value="BGD ER-RICH" th:selected="${contact.nomInterm eq 'BGD ER-RICH'}">BGD ER-RICH</option>
+                            <option value="BGD SOCOMA" th:selected="${contact.nomInterm eq 'BGD SOCOMA'}">BGD SOCOMA</option>
+                            <option value="BGD ECHEMMAIA" th:selected="${contact.nomInterm eq 'BGD ECHEMMAIA'}">BGD ECHEMMAIA</option>
+                            <option value="BGD BIOUGRA" th:selected="${contact.nomInterm eq 'BGD BIOUGRA'}">BGD BIOUGRA</option>
+                            <option value="BGD Sidi bibi" th:selected="${contact.nomInterm eq 'BGD Sidi bibi'}">BGD Sidi bibi</option>
+                            <option value="BGD SKHIRAT" th:selected="${contact.nomInterm eq 'BGD SKHIRAT'}">BGD SKHIRAT</option>
+                            <option value="BGD BETTANA" th:selected="${contact.nomInterm eq 'BGD BETTANA'}">BGD BETTANA</option>
+                            <option value="BGD SIDI KACEM" th:selected="${contact.nomInterm eq 'BGD SIDI KACEM'}">BGD SIDI KACEM</option>
+                            <option value="BGD TAMANAR" th:selected="${contact.nomInterm eq 'BGD TAMANAR'}">BGD TAMANAR</option>
+                            <option value="BGD BEN GUERIR" th:selected="${contact.nomInterm eq 'BGD BEN GUERIR'}">BGD BEN GUERIR</option>
+                            <option value="BGD FARKHANA" th:selected="${contact.nomInterm eq 'BGD FARKHANA'}">BGD FARKHANA</option>
+
+
+
+                        </select>
+                        <span class="text-danger" th:errors="${contact.nomInterm}"></span>
+                    </div>
+
+                    <div>
+                        <label class="mb-2 mt-2">Périmètre concerné :</label>
+                        <select class="form-control mb-2" name="perimetre" id="perimetre">
+                            <option value=""></option>
+                            <option value="Mono" th:selected="${contact.perimetre eq 'Mono'}">Mono</option>
+                            <option value="Site RMA" th:selected="${contact.perimetre eq 'Site RMA'}">Site RMA</option>
+                            <option value="E-Epargne" th:selected="${contact.perimetre eq 'E-Epargne'}">E-Epargne</option>
+                            <option value="SIN MAT" th:selected="${contact.perimetre eq 'SIN MAT'}">SIN MAT</option>
+                            <option value="Sigma Recouv" th:selected="${contact.perimetre eq 'Sigma Recouv'}">Sigma Recouv</option>
+                            <option value="Legal Suite" th:selected="${contact.perimetre eq 'Legal Suite'}">Legal Suite"</option>
+                            <option value="Vega" th:selected="${contact.perimetre eq 'Vega'}">Vega</option>
+                            <option value="WF Cotation" th:selected="${contact.perimetre eq 'WF Cotation'}">WF Cotation</option>
+                            <option value="Epargne Prevoyance" th:selected="${contact.perimetre eq 'Epargne Prevoyance'}">Epargne Prevoyance</option>
+                            <option value="Gestion Reclamation" th:selected="${contact.perimetre eq 'Gestion Reclamation'}">Gestion Reclamation</option>
+                            <option value="GAMA" th:selected="${contact.perimetre eq 'GAMA'}">GAMA</option>
+                            <option value="Flotte" th:selected="${contact.perimetre eq 'Flotte'}">Flotte</option>
+                            <option value="RMA Mobile" th:selected="${contact.perimetre eq 'RMA Mobile'}">RMA Mobile</option>
+                            <option value="MYZANYA" th:selected="${contact.perimetre eq 'MYZANYA'}">MYZANYA</option>
+                            <option value="SYREC" th:selected="${contact.perimetre eq 'SYREC'}">SYREC</option>
+                            <option value="ASSURLINE" th:selected="${contact.perimetre eq 'ASSURLINE'}">ASSURLINE</option>
+                            <option value="Sinistre AT" th:selected="${contact.perimetre eq 'Sinistre AT'}">Sinistre AT</option>
+                        </select>
+                        <span class="text-danger" th:errors="${contact.perimetre}"></span>
+                    </div>
+
+                    <div>
+                        <label class="mb-2 mt-2">Type de Feedback :</label>
+                        <select class="form-control mb-2" name="typeFeedback" id="typeFeedback">
+                            <option value=""></option>
+                            <option value="Assistance" th:selected="${contact.typeFeedback eq 'Assistance'}">Assistance</option>
+                            <option value="Anomalie" th:selected="${contact.typeFeedback eq 'Anomalie'}">Anomalie</option>
+                            <option value="Paramétrage" th:selected="${contact.typeFeedback eq 'Paramétrage'}">Paramétrage</option>
+
+                        </select>
+                        <span class="text-danger" th:errors="${contact.typeFeedback}"></span>
+                    </div>
+
+                    <div>
+                        <label class="mb-2 mt-2">Nature De La Demande :</label>
+                        <select class="form-control mb-2" name="natureDemande" id="natureDemande">
+                            <option value=""></option>
+                            <option value="Demande Info" th:selected="${contact.natureDemande eq 'Demande Info'}">Demande Info</option>
+                            <option value="Demande Info" th:selected="${contact.natureDemande eq 'Demande Info'}">Demande Info</option>
+                            <option value="Assistance Fonctionnelle Digital" th:selected="${contact.natureDemande eq 'Assistance Fonctionnelle Digital'}">Assistance Fonctionnelle Digital</option>
+                            <option value="Blocage technique" th:selected="${contact.natureDemande eq 'Blocage technique'}">Blocage technique</option>
+                            <option value="Anomalie SI RMA" th:selected="${contact.natureDemande eq 'Anomalie SI RMA'}">Anomalie SI RMA</option>
+                            <option value="Anomalie Digital" th:selected="${contact.natureDemande eq 'Anomalie Digital'}">Anomalie Digital</option>
+                            <option value="Relance" th:selected="${contact.natureDemande eq 'Relance'}">Relance</option>
+                            <option value="Paramétrage SI RMA" th:selected="${contact.natureDemande eq 'Paramétrage SI RMA'}">Paramétrage SI RMA</option>
+                            <option value="Paramétrage Digital" th:selected="${contact.natureDemande eq 'Paramétrage Digital'}">Paramétrage Digital</option>
+
+                        </select>
+                        <span class="text-danger" th:errors="${contact.natureDemande}"></span>
+                    </div>
+
+                    <div>
+                        <label class="mb-2 mt-2">Commentaire :</label>
+                        <input class="form-control mb-2" type="text" name="description" th:value="${contact.description}">
+                        <span class="text-danger" th:errors="${contact.description}"></span>
+                    </div>
+
+                    <!--<div>
                         <label class="mb-2 mt-2">Civilité</label>
                         <input class="form-control" type="text" name="civil" th:value="${patient.civil}">
                         <span class="text-danger" th:errors="${patient.civil}"></span>
@@ -51,7 +619,7 @@
                         <label  class="mb-2 mt-2 ">N° Carte d'identité</label>
                         <input class="form-control mb-2" type="text" name="score" th:value="${patient.CIN}">
                         <span class="text-danger" th:errors="${patient.CIN}"></span>
-                    </div>
+                    </div>-->
                     <button type="submit" class="btn btn-primary">Save </button>
                 </form>
             </div>

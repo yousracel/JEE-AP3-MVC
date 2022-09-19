@@ -1,8 +1,10 @@
 package ma.emsi.patientsmvc;
 
+import ma.emsi.patientsmvc.entities.Contact;
 import ma.emsi.patientsmvc.entities.Patient;
 import ma.emsi.patientsmvc.entities.Medecin;
 
+import ma.emsi.patientsmvc.repositories.ContactRepository;
 import ma.emsi.patientsmvc.repositories.MedecinRepository;
 import ma.emsi.patientsmvc.repositories.PatientRepository;
 import ma.emsi.patientsmvc.sec.service.SecurityService;
@@ -28,16 +30,23 @@ public class PatientsMvcApplication {
     }
 
     //@Bean
+    CommandLineRunner commandLineRunner(ContactRepository contactRepository){
+        return args -> {
+            contactRepository.save(
+                    new Contact(new Date(),null, "APPEL", "AGENT","union","mono", "ASSISTANCE","demande info", "dkfnskn")
+            );
+            contactRepository.findAll().forEach(p->{
+                System.out.println(p.getNomInterm());
+            });
+        };
+    }
+
+    //@Bean
     CommandLineRunner commandLineRunner(PatientRepository patientRepository){
         return args -> {
             patientRepository.save(
-                    new Patient(null,"yousra","Mme",new Date(),false,10,"BE45481"));
-            patientRepository.save(
-                    new Patient(null,"sabah","Mme",new Date(),true,12,"BE44881"));
-            patientRepository.save(
-                    new Patient(null,"alia","Mme",new Date(),true,100,"BE41081"));
-            patientRepository.save(
-                    new Patient(null,"othmane","Mr",new Date(),false,70,"BE49981"));
+                    new Patient(null,"khadija","Mme",new Date(),false,10,"BE45481"));
+
 
             patientRepository.findAll().forEach(p->{
                 System.out.println(p.getNom());
@@ -46,30 +55,34 @@ public class PatientsMvcApplication {
         };
     }
 
-    //@Bean
+   //@Bean
     CommandLineRunner saveUsers(SecurityService securityService){
         return args -> {
 
             //add Users
-            securityService.saveNewUser("mohamed","1234","1234");
+            /*securityService.saveNewUser("mohamed","1234","1234");
             securityService.saveNewUser("yassine","1234","1234");
-            securityService.saveNewUser("hassan","1234","1234");
+            securityService.saveNewUser("hassan","1234","1234");*/
+
+            securityService.saveNewUser("khadija","1111","1111");
 
             //add Roles
             securityService.saveNewRole("USER","");
             securityService.saveNewRole("ADMIN","");
 
             //attribute role to users
-            securityService.addRoleToUser("mohamed","USER");
+            /*securityService.addRoleToUser("mohamed","USER");
             securityService.addRoleToUser("mohamed","ADMIN");
             securityService.addRoleToUser("yassine","USER");
-            securityService.addRoleToUser("hassan","USER");
+            securityService.addRoleToUser("hassan","USER");*/
 
+            securityService.addRoleToUser("khadija","ADMIN");
+            //securityService.addRoleToUser("khadija","USER");
         };
     }
 
     //@Bean
-    CommandLineRunner commandLineRunner(MedecinRepository medecinRepository) {
+    /*CommandLineRunner commandLineRunner(MedecinRepository medecinRepository) {
         return args -> {
             medecinRepository.save(new Medecin(null, "Hassan", new Date(),"traumato"));
             medecinRepository.save(new Medecin(null, "Mohammed", new Date(),"pediatre"));
@@ -79,6 +92,6 @@ public class PatientsMvcApplication {
                 System.out.println(p.getNom());
             });
         };
-    }
+    }*/
 
 }
